@@ -280,6 +280,7 @@ int main(int argc, char **argv)
       break;
     case 3:
       call_visit();
+      break;
     default:
       exit_flag = 1;
     }
