@@ -155,11 +155,26 @@ da viagem no formato dado no enunciado do trabalho.
 
 \subsection{Implementação em \texttt{Python}}
 
-\lipsum[1]
+Na implementação em \texttt{Python} utilizámos o módulo \texttt{nltk} e
+usámos dois ficheiros. O primeiro, \texttt{pt\_grammar.fcfg}, contém a nossa
+gramática da língua portuguesa no formato aceite pelo \texttt{nltk}, assim como
+a base de dados de palavras com a sua respectiva categorização lexicográfica.
+E temos o ficheiro \texttt{dcg.py} que implementa a função \texttt{sentence\_analysis}
+que recebe a frase a analisar como argumento e, caso a mesma esteja correcta, mostra
+a análise morfológica da mesma.
 
-\lipsum[2]
+A gramática utilizada é a mesma introduzida no início desta secção. Assim com a base
+de dados utilizada.
 
-\lipsum[3]
+Para a implementação da função \texttt{sentence\_analysis} começamos por carregar a
+nossa gramática para o parser e fazer um pequeno tratamento da frase recebida (ignorar
+sinais de pontuação, converter todos os caracteres para minúsculas e dividir a frase
+na lista das palavras que a compõe). Após isto, o \texttt{nltk} usa a nossa gramática
+para gerar as árvores da análise sintática da frase recebida.
+
+Implementámos ainda a função \texttt{assert\_sentence\_analysis} que tem como objectivo
+testar a nossa função de análise sintática com os exemplos fornecidos no enunciado do
+trabalho.
 
 \subsection{Notas das Implementações}
 
