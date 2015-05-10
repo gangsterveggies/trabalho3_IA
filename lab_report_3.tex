@@ -183,12 +183,56 @@ ignorada a semântica, como indicado no enunciado.
  
 \subsection{Gramática utilizada}
 
-\lipsum[1]
+A gramática que foi implementada é baseada num livro de gramática
+portuguesa \cite{arezedo:2013}. Existe alguma margem para interpretação
+de como deve ser estruturada a gramática portuguesa, por isso seguimos
+o mais possível o livro indicado.
 
-\lipsum[2]
+Apesar de apenas ser necessário considerar a sintaxe da frase, a
+introdução do género e número acaba por pertencer ao domínio da
+semântica. Assim, para manter a implementação o mais limpa possível,
+estes foram passados como argumentos em ambas as implementações e a
+sua concordância foi garantida a nível da gramática. Uma implementação
+mais eficiente ignoraria estes fatores e posteriormente faria uma
+análise semântica ao percorrer a \textit{parse tree} e garantido a
+concordância de todos os atributos (o que poderia incluir outros
+atributos, como a pessoa, tempo verbal, \ldots). Além disto,
+introduzimos a noção de verbo intransitivo e verbo transitivo (que
+pode ser transitivo direto ou transitivo indireto) na gramática e
+consideramos estes fatores na \textit{parse tree} (apesar de ser algo
+que também pertence à semântica).
 
-\lipsum[3]
+Consideramos também frases simples e complexas, usando conjunções
+coordenadas (a subordinação implica a mudança da estrutura da frase e
+é um exemplo onde a semântica altera a sintaxe e que complicaria ainda
+mais esta gramática). Isto não se aplica ao nível de coordenação de
+grupos nominais (por exemplo, ``Eu e o João corremos''), pois alterava
+a concordância de número para plural e complicava assim a
+implementação (o grupo nominal e o grupo verbal deixariam de ser
+independentes em termos de conteúdo).
 
+Uma outra nota importante é que para considerarmos contrações de
+palavras (por exemplo, ``na'' = ``em'' + ``a''), usamos um conceito
+fictício de preposições pronomiais e preposições determinantes,
+dependendo se a contração envolve uma preposição e um pronome ou uma
+preposição e um determinante. Pelo que sabemos este conceito não
+existe na literatura linguística (apesar de existir na computacional),
+mas simplifica-nos a representação.
+
+Isto tudo resulta numa gramática que permite reconhecer as frases de
+exemplo do enunciado, mas também várias outras formas
+diferentes. Claro que ignoramos muitos casos importantes da gramática
+portuguesa, sendo os mais importantes a forma passiva e os
+predicativos de sujeito (que são usados com verbos específicos como
+``ser'').
+
+As bases de dados que colocámos não são muito extensas, apenas incluem
+as palavras necessárias para reconhecer todas as frases de exemplo do
+enunciado. Tínhamos uma base de dados maior de palavras que estávamos
+a considerar em incluir, infelizmente era necessário fazer algumas
+modificações ao seu conteúdo (por exemplo, os verbos não diziam se
+eram transitivos ou intransitivos) \cite{label:2003} e por falta de
+tempo não concluímos a sua inserção.
 
 \subsection{Implementação em \texttt{Prolog}}
 
