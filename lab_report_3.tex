@@ -131,19 +131,27 @@ predicados para responder às perguntas dinamicamente.
 
 \subsection{Implementação em \textit{Ruby}}
 
-\lipsum[1]
+Na implementação em \texttt{Ruby} usámos apenas um ficheiro que
+responde às três perguntas, juntamente com um menu semelhante ao usado
+no programa em \texttt{C} que utiliza o \texttt{Prolog} para responder
+às perguntas. Os vôos são armazenados numa \textit{hash table} para
+poderem ser obtidos de forma eficiente quando necessários.
 
-\lipsum[2]
+Para a primeira questão, a função responsável por responder à mesma
+apenas percorre a lista de vôos entre as cidades dadas, imprimindo
+informações dos mesmos à medida que é feita a união dos conjuntos de
+dias em que cada vôo está disponível.
 
-\lipsum[3]
+Para a segunda questão, é feita uma pesquisa em profundidade mantendo
+no estado as cidades já visitadas para não voltar às mesmas, e imprimir
+informação de cada rota no final. Nota para que apenas são pesquisados
+espaços de procura válidos. Caso apenas estivéssemos interessados em
+obter uma das rotas (a mais rápida por exemplo) podiamos ter usado um
+algoritmo diferente (algoritmo de \textit{Dijkstra} por exemplo).
 
-\subsection{Implementação do bónus}
-
-\lipsum[1]
-
-\lipsum[2]
-
-\lipsum[3]
+Finalmente, a terceira questão, são geradas todas as possíveis ordem de
+visita das cidades e, para cada uma, é verificado se a mesma é possível
+utilizando a função responsável por responder à primeira pergunta.
 
 \subsection{Notas das Implementações}
 
@@ -208,14 +216,6 @@ para gerar as árvores da análise sintática da frase recebida.
 Implementámos ainda a função \texttt{assert\_sentence\_analysis} que tem como objectivo
 testar a nossa função de análise sintática com os exemplos fornecidos no enunciado do
 trabalho.
-
-\subsection{Implementação do bónus}
-
-\lipsum[1]
-
-\lipsum[2]
-
-\lipsum[3]
 
 \subsection{Notas das Implementações}
 
