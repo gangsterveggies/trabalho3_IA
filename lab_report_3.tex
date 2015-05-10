@@ -122,6 +122,13 @@ final, \texttt{Day} é representa o dia em que começa a viagem,
 finalmente a resposta estará em \texttt{Route}, que representa a rota
 da viagem no formato dado no enunciado do trabalho.
 
+Além disto, foi implementado um programa em \texttt{C} que utiliza o
+\textit{foreign interface} do \texttt{Prolog} para comunicarem, no
+ficheiro \texttt{main.c}. Para compilar este código deve-se usar o
+comando \texttt{swipl-ld -o main main.c main.pl bd.pl}. Este pequeno
+programa apenas introduz um menu que permite chamar os vários
+predicados para responder às perguntas dinamicamente.
+
 \subsection{Implementação em \textit{Ruby}}
 
 \lipsum[1]
@@ -132,9 +139,17 @@ da viagem no formato dado no enunciado do trabalho.
 
 \subsection{Notas das Implementações}
 
-\lipsum[1]
+Neste problema, a representação em \texttt{Prolog} fica bastante
+natural, pois visto que o funcionamento do \texttt{Prolog} é baseado
+em \textit{backtracking} (além de outros conceitos, como unificação,
+claro). Porém, a eficiência da segunda pergunta podia ser bastante
+otimizada com algoritmos mais específicos para grafos, cuja
+representação em \texttt{Prolog} não é tão natural (apesar de ser
+possível).
 
-\lipsum[2]
+Dito isto, os operadores de \texttt{Prolog} em conjunto com as
+definições naturais dos predicados ajudam a que a implementação em
+\texttt{Prolog}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
