@@ -1,0 +1,6 @@
+               João Ramos e Pedro Paredes
+   --------------------------------------------------------
+
+O código foi desenvolvido em Prolog, Python, Ruby e C e testado
+em ambiente Linux (Ubuntu 14.04) usando o yap 6.2.2, python 2.7.6,
+ruby 1.9.3 e gcc versão 4.8.2.
