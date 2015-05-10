@@ -44,7 +44,8 @@
 
 O paradigma lógico tem um nível de abstração que permite abordagens e
 representações diferentes para vários problemas. Atualmente, existe
-uma vasta investigação na área em diversos temas, principalmente
+uma vasta investigação na área em diversos temas (por exemplo,
+\cite{costantini:2014}, \cite{komendantskaya:2014}), principalmente
 usando a linguagem \texttt{Prolog}. É neste tema que se insere este
 trabalho, olhando para as bases deste paradigma e a sua aplicabilidade
 em diferentes situações.
@@ -125,11 +126,12 @@ finalmente a resposta do predicado estará em \texttt{Route}, que
 representa a rota da viagem no formato dado no enunciado do trabalho.
 
 Além disto, foi implementado um programa em \texttt{C} que utiliza o
-\textit{foreign interface} do \texttt{Prolog} para comunicar, no
-ficheiro \texttt{main.c}. Para compilar este código deve-se usar o
-comando \texttt{swipl-ld -o main main.c main.pl bd.pl}. Este pequeno
-programa apenas introduz um menu que permite chamar os vários
-predicados para responder às perguntas interativamente.
+\textit{foreign interface} do \texttt{Prolog} \cite{swi:2015} para
+comunicar, no ficheiro \texttt{main.c}. Para compilar este código
+deve-se usar o comando \texttt{swipl-ld -o main main.c main.pl
+  bd.pl}. Este pequeno programa apenas introduz um menu que permite
+chamar os vários predicados para responder às perguntas
+interativamente.
 
 \subsection{Implementação em \textit{Ruby}}
 
@@ -244,10 +246,10 @@ por falta de tempo não concluímos a sua inserção.
 \subsection{Implementação em \texttt{Prolog}}
 
 A implementação em \texttt{Prolog} usa o conceito de \textit{Definite
-  Clause Grammars} que por sua vez é implementado em \texttt{Prolog}
-usando diferença de listas. Esta é uma técnica elegante para
-representar uma gramática que é muito fácil de introduzir em
-\texttt{Prolog}.
+  Clause Grammars} \cite{DCG:2015} que por sua vez é implementado em
+\texttt{Prolog} usando diferença de listas. Esta é uma técnica
+elegante para representar uma gramática que é muito fácil de
+introduzir em \texttt{Prolog}.
 
 Na implementação temos a considerar 4 ficheiros diferentes. O
 \texttt{bd.pl} contém o dicionário de palavras a serem utilizadas
@@ -286,14 +288,14 @@ permite verificar a correção de frases assim como gerar as devidas
 \subsection{Implementação em \texttt{Python}}
 
 Na implementação em \texttt{Python} utilizámos o módulo \texttt{nltk}
-e usámos dois ficheiros. O primeiro, \texttt{pt\_grammar.fcfg}, contém
-a nossa gramática da língua portuguesa no formato aceite pelo
-\texttt{nltk}, assim como a base de dados de palavras com a sua
-respetiva categorização lexicográfica. Adicionalmente, temos o
-ficheiro \texttt{dcg.py} que implementa a função
-\texttt{sentence\_analysis} que recebe a frase a analisar como
-argumento e, caso a mesma esteja correcta, mostra a análise sintática
-da mesma.
+\cite{nltk:2015} e usámos dois ficheiros. O primeiro,
+\texttt{pt\_grammar.fcfg}, contém a nossa gramática da língua
+portuguesa no formato aceite pelo \texttt{nltk}, assim como a base de
+dados de palavras com a sua respetiva categorização
+lexicográfica. Adicionalmente, temos o ficheiro \texttt{dcg.py} que
+implementa a função \texttt{sentence\_analysis} que recebe a frase a
+analisar como argumento e, caso a mesma esteja correcta, mostra a
+análise sintática da mesma.
 
 A gramática utilizada é a mesma introduzida no início desta
 secção, assim como a base de dados utilizada.
@@ -352,7 +354,7 @@ poderosa, foi necessário utilizar um módulo extra.
 
 Apesar disto, há situações e problemas em que a situação se inverte,
 ou seja, em que é mais simples a implementação numa linguagem
-imperativa em relação a uma linguagem lógica. Contudo, é sobre bom ter
+imperativa em relação a uma linguagem lógica. Contudo, é sempre bom ter
 mais ferramentas à disposição para atacar cada problema da melhor
 maneira.
 
