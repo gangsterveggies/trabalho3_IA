@@ -45,7 +45,9 @@
 O paradigma lógico tem um nível de abstração que permite abordagens e
 representações diferentes para vários problemas. Atualmente, existe
 uma vasta investigação na área em diversos temas, principalmente
-usando a linguagem \texttt{Prolog}.
+usando a linguagem \texttt{Prolog}. É neste tema que se insere este
+trabalho, olhando para as bases deste paradigma e a sua aplicabilidade
+em diferentes situações.
 
 Neste trabalho iremos comparar a implementação de soluções em
 \texttt{Prolog} com diferentes linguagens imperativas em diferentes
@@ -110,17 +112,17 @@ Para a segunda questão, temos o predicado \texttt{route/4}, que aceita
 o cabeçalho \texttt{route( +Place1, +Place2, ?Day, -Route )}, onde
 \texttt{Place1} representa a localização inicial, \texttt{Place2}
 representa a localização final, \texttt{Day} é um argumento opcional
-que representa o dia da viagem e finalmente a resposta estará em
-\texttt{Route}, que representa a rota da viagem no formato dado no
-enunciado do trabalho.
+que representa o dia da viagem e finalmente a resposta do predicado
+estará em \texttt{Route}, que representa a rota da viagem no formato
+dado no enunciado do trabalho.
 
 Finalmente, a terceira questão, temos o predicado \texttt{visit/4},
-que aceita o cabeçalho \texttt{visit( +Placei, +Day, +Destlist,
-  -Route )}, onde \texttt{Placei} representa a localização inicial e
-final, \texttt{Day} é representa o dia em que começa a viagem,
+que aceita o cabeçalho \texttt{visit( +Placei, +Day, +Destlist, -Route
+  )}, onde \texttt{Placei} representa a localização inicial e final,
+\texttt{Day} é representa o dia em que começa a viagem,
 \texttt{Destlist} é uma lista de destinos onde se pretende passar e
-finalmente a resposta estará em \texttt{Route}, que representa a rota
-da viagem no formato dado no enunciado do trabalho.
+finalmente a resposta do predicado estará em \texttt{Route}, que
+representa a rota da viagem no formato dado no enunciado do trabalho.
 
 Além disto, foi implementado um programa em \texttt{C} que utiliza o
 \textit{foreign interface} do \texttt{Prolog} para comunicar, no
@@ -134,20 +136,21 @@ predicados para responder às perguntas interativamente.
 Na implementação em \texttt{Ruby} usámos apenas um ficheiro que
 responde às três perguntas, juntamente com um menu semelhante ao usado
 no programa em \texttt{C} que utiliza o \texttt{Prolog} para responder
-às perguntas. Os vôos são armazenados numa \textit{hash table} para
+às perguntas. Os voos são armazenados numa \textit{hash table} para
 poderem ser obtidos de forma eficiente quando necessários.
 
 Para a primeira questão, a função responsável por responder à mesma
-apenas percorre a lista de vôos entre as cidades dadas, imprimindo
+apenas percorre a lista de voos entre as cidades dadas, imprimindo
 informações dos mesmos à medida que é feita a união dos conjuntos de
-dias em que cada vôo está disponível.
+dias em que cada voo está disponível.
 
 Para a segunda questão, é feita uma pesquisa em profundidade mantendo
-no estado as cidades já visitadas para não voltar às mesmas, e imprimir
-informação de cada rota no final. Nota para que apenas são pesquisados
-espaços de procura válidos. Caso apenas estivéssemos interessados em
-obter uma das rotas (a mais rápida por exemplo) podiamos ter usado um
-algoritmo diferente (algoritmo de \textit{Dijkstra} por exemplo).
+no estado as cidades já visitadas para não voltar às mesmas,
+imprimindo-se as informações de cada rota no final. É de notar que
+apenas são pesquisados espaços de procura válidos. Caso apenas
+estivéssemos interessados em obter uma das rotas (a mais rápida por
+exemplo) podíamos ter usado um algoritmo diferente (algoritmo de
+\textit{Dijkstra} por exemplo).
 
 Finalmente, a terceira questão, são geradas todas as possíveis ordem de
 visita das cidades e, para cada uma, é verificado se a mesma é possível
@@ -158,10 +161,14 @@ utilizando a função responsável por responder à primeira pergunta.
 Neste problema, a representação em \texttt{Prolog} fica bastante
 natural, pois visto que o funcionamento do \texttt{Prolog} é baseado
 em \textit{backtracking} (além de outros conceitos, como unificação,
-claro). Porém, a eficiência da segunda pergunta podia ser bastante
-otimizada com algoritmos mais específicos para grafos, como referido
-na subsecção anterior, cuja representação em \texttt{Prolog} não é tão
-natural (apesar de ser possível).
+claro), o problema insere-se no tipo de pesquisas que o
+\texttt{Prolog} está construído para fazer. Porém, a eficiência da
+segunda pergunta podia ser bastante otimizada com algoritmos mais
+específicos para grafos, como os referidos na subsecção anterior, cuja
+representação em \texttt{Prolog} não é tão natural (apesar de ser
+possível). Isto aplica-se também às outras perguntas, pois não é
+difícil de alterar o tipo de pergunta para que a formulação fique
+muito mais complicada.
 
 Dito isto, os operadores de \texttt{Prolog} em conjunto com as
 definições naturais dos predicados ajudam a que a implementação em
@@ -230,9 +237,9 @@ As bases de dados que colocámos não são muito extensas, apenas incluem
 as palavras necessárias para reconhecer todas as frases de exemplo do
 enunciado. Tínhamos uma base de dados maior de palavras que estávamos
 a considerar em incluir, infelizmente era necessário fazer algumas
-modificações ao seu conteúdo (por exemplo, os verbos não diziam se
-eram transitivos ou intransitivos) \cite{label:2003} e por falta de
-tempo não concluímos a sua inserção.
+modificações ao seu conteúdo (por exemplo, os verbos não estavam
+indicados se eram transitivos ou intransitivos) \cite{label:2003} e
+por falta de tempo não concluímos a sua inserção.
 
 \subsection{Implementação em \texttt{Prolog}}
 
@@ -270,44 +277,61 @@ esta informação.
 
 Além disto, foi implementado um programa em \texttt{C} que utiliza o
 \textit{foreign interface} do \texttt{Prolog} para comunicar, no
-ficheiro \texttt{main.c}. Este implementa um menu simples que permite
-verificar a correção de frases assim como gerar as devidas
+ficheiro \texttt{main.c}. Para compilar este código deve-se usar o
+comando \texttt{swipl-ld -o main main.c synt\_gen.pl
+  synt\_gen\_parse.pl bd.pl}. Este implementa um menu simples que
+permite verificar a correção de frases assim como gerar as devidas
 \textit{parse trees} interativamente.
 
 \subsection{Implementação em \texttt{Python}}
 
-Na implementação em \texttt{Python} utilizámos o módulo \texttt{nltk} e
-usámos dois ficheiros. O primeiro, \texttt{pt\_grammar.fcfg}, contém a nossa
-gramática da língua portuguesa no formato aceite pelo \texttt{nltk}, assim como
-a base de dados de palavras com a sua respectiva categorização lexicográfica.
-E temos o ficheiro \texttt{dcg.py} que implementa a função \texttt{sentence\_analysis}
-que recebe a frase a analisar como argumento e, caso a mesma esteja correcta, mostra
-a análise morfológica da mesma.
+Na implementação em \texttt{Python} utilizámos o módulo \texttt{nltk}
+e usámos dois ficheiros. O primeiro, \texttt{pt\_grammar.fcfg}, contém
+a nossa gramática da língua portuguesa no formato aceite pelo
+\texttt{nltk}, assim como a base de dados de palavras com a sua
+respetiva categorização lexicográfica. Adicionalmente, temos o
+ficheiro \texttt{dcg.py} que implementa a função
+\texttt{sentence\_analysis} que recebe a frase a analisar como
+argumento e, caso a mesma esteja correcta, mostra a análise sintática
+da mesma.
 
-A gramática utilizada é a mesma introduzida no início desta secção. Assim com a base
-de dados utilizada.
+A gramática utilizada é a mesma introduzida no início desta
+secção, assim como a base de dados utilizada.
 
-Para a implementação da função \texttt{sentence\_analysis} começamos por carregar a
-nossa gramática para o parser e fazer um pequeno tratamento da frase recebida (ignorar
-sinais de pontuação, converter todos os caracteres para minúsculas e dividir a frase
-na lista das palavras que a compõe). Após isto, o \texttt{nltk} usa a nossa gramática
-para gerar as árvores da análise sintática da frase recebida.
+Para a implementação da função \texttt{sentence\_analysis} começamos
+por carregar a nossa gramática para o parser e fazer um pequeno
+tratamento da frase recebida (ignorar sinais de pontuação, converter
+todos os caracteres para minúsculas e dividir a frase na lista das
+palavras que a compõe). Após isto, o \texttt{nltk} usa a nossa
+gramática para gerar as árvores da análise sintática da frase
+recebida.
 
-Implementámos ainda a função \texttt{assert\_sentence\_analysis} que tem como objectivo
-testar a nossa função de análise sintática com os exemplos fornecidos no enunciado do
-trabalho.
+Implementámos ainda a função \texttt{assert\_sentence\_analysis} que
+tem como objectivo testar a nossa função de análise sintática com os
+exemplos fornecidos no enunciado do trabalho.
 
 \subsection{Notas das Implementações}
 
-Neste problema, as representações em \texttt{Prolog} e \texttt{Python} ficam ambas bastante
-naturais e parecidas graças ao módulo \texttt{nltk} utilizado no python que permite uma
-implementação simples mas bastante poderosa da gramática.
+Neste problema, as representações em \texttt{Prolog} e \texttt{Python}
+ficaram ambas bastante naturais e semelhantes graças ao módulo
+\texttt{nltk} utilizado no python que permite uma implementação
+simples mas bastante poderosa da gramática.
 
-Ambas as implementações, particularmente a implementação em \texttt{Python} graças às
-potencialidades oferecidas pelo \texttt{nltk}, permitem melhorias significativas não só a
-nível de eficiência como da qualidade da análise sintática mantendo as implementações com
-baixo nível de complexidade.
+Ambas as implementações, particularmente a implementação em
+\texttt{Python} graças às potencialidades oferecidas pelo
+\texttt{nltk}, permitem melhorias significativas não só a nível de
+eficiência como da qualidade da análise sintática mantendo as
+implementações com baixo nível de complexidade.
 
+Porém, a representação de \texttt{Prolog} acaba por ser mais limitada,
+pois se fosse necessário realizar-se uma análise semântica mais
+complexa, a sua implementação em \texttt{Prolog} não seria muito
+trivial. O ideal seria usar \texttt{Prolog} para a análise sintática
+simples inicial e complementar esta análise com \texttt{Python} para
+garantir as concordâncias e tudo mais. O único problema seria a
+eficiência, pois apesar de a representação em \texttt{Prolog} ser
+natural, podia ser mais eficiente (especialmente sabendo que a
+gramática foi construída para ser recursiva è esquerda).
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
@@ -316,17 +340,21 @@ baixo nível de complexidade.
 \section{Conclusão}
 \label{sec:conc}
 
-Este trabalho permitiu explorar e ver em prática a utilização de uma linguagem com um
-diferente paradigma para a resolução de problemas com características diferentes.
+Este trabalho permitiu explorar e ver na prática a utilização de uma
+linguagem com um paradigma diferente para a resolução de problemas com
+variadas características.
 
-O paradigma lógico permite, nos problemas analisados, implementações mais concisas e
-simples, mesmo sem ser necessário recorrer a módulos extra, como foi o caso na implementação
-do segundo problema numa linguagem imperativa em que, para ter uma implementação simples
-mas poderosa foi necessário utilizar um módulo extra.
+O paradigma lógico permite, nos problemas analisados, implementações
+mais concisas e simples, mesmo sem ser necessário recorrer a módulos
+extra, como foi o caso na implementação do segundo problema numa
+linguagem imperativa em que, para ter uma implementação simples mas
+poderosa, foi necessário utilizar um módulo extra.
 
-Apesar disto, há situações e problemas em que a situação se inverte, ou seja, em que é mais
-simples a implementação numa linguagem imperativa em relação a uma linguagem lógica. Contudo,
-é sobre bom ter mais ``armas'' à disposição para atacar cada problema da melhor maneira.
+Apesar disto, há situações e problemas em que a situação se inverte,
+ou seja, em que é mais simples a implementação numa linguagem
+imperativa em relação a uma linguagem lógica. Contudo, é sobre bom ter
+mais ferramentas à disposição para atacar cada problema da melhor
+maneira.
 
 
 \bibliographystyle{plain}
