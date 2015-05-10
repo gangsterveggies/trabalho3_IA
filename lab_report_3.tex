@@ -91,11 +91,36 @@ ajudou-nos a organizar as implementações.
 
 \subsection{Implementação em \texttt{Prolog}}
 
-Na implementação em \texttt{Prolog}
+Na implementação em \texttt{Prolog} usámos dois ficheiros com
+predicados. O primeiro, \texttt{main.pl} contém os predicados os
+predicados que respondem às questões anteriores e vários predicados
+auxiliares. Adicionalmente, temos um ficheiro \texttt{bd.pl} que
+contém as entradas na base de dados de voos (na forma de predicados
+\texttt{timetable/3}. Os predicados que respondem às questões
+anteriores são os seguintes.
 
-\lipsum[2]
+Para a primeira questão, temos o predicado \texttt{directflight/3}, que
+aceita o cabeçalho \texttt{directflight( +Place1, +Place2, -Day )}, onde
+\texttt{Place1} representa a localização inicial, \texttt{Place2}
+representa a localização final e a resposta que o predicado dá é o
+\texttt{Day}, que representa cada dia que satisfaz as condições da
+pergunta.
 
-\lipsum[3]
+Para a segunda questão, temos o predicado \texttt{route/4}, que aceita
+o cabeçalho \texttt{route( +Place1, +Place2, ?Day, -Route )}, onde
+\texttt{Place1} representa a localização inicial, \texttt{Place2}
+representa a localização final, \texttt{Day} é um argumento opcional
+que representa o dia da viagem e finalmente a resposta estará em
+\texttt{Route}, que representa a rota da viagem no formato dado no
+enunciado do trabalho.
+
+Finalmente, a terceira questão, temos o predicado \texttt{visit/4},
+que aceita o cabeçalho \texttt{visit( +Placei, +Day, +Destlist,
+  -Route )}, onde \texttt{Placei} representa a localização inicial e
+final, \texttt{Day} é representa o dia em que começa a viagem,
+\texttt{Destlist} é uma lista de destinos onde se pretende passar e
+finalmente a resposta estará em \texttt{Route}, que representa a rota
+da viagem no formato dado no enunciado do trabalho.
 
 \subsection{Implementação em \textit{Ruby}}
 
