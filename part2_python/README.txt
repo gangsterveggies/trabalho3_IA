@@ -1,3 +1,5 @@
+               João Ramos e Pedro Paredes
+   --------------------------------------------------------
 
 Para a utilização deste programa é necessário ter o módulo "nltk" instalado.
 Notas sobre a instalação do mesmo podem ser encontradas aqui:
