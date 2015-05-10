@@ -123,11 +123,11 @@ finalmente a resposta estará em \texttt{Route}, que representa a rota
 da viagem no formato dado no enunciado do trabalho.
 
 Além disto, foi implementado um programa em \texttt{C} que utiliza o
-\textit{foreign interface} do \texttt{Prolog} para comunicarem, no
+\textit{foreign interface} do \texttt{Prolog} para comunicar, no
 ficheiro \texttt{main.c}. Para compilar este código deve-se usar o
 comando \texttt{swipl-ld -o main main.c main.pl bd.pl}. Este pequeno
 programa apenas introduz um menu que permite chamar os vários
-predicados para responder às perguntas dinamicamente.
+predicados para responder às perguntas interativamente.
 
 \subsection{Implementação em \textit{Ruby}}
 
@@ -159,9 +159,9 @@ Neste problema, a representação em \texttt{Prolog} fica bastante
 natural, pois visto que o funcionamento do \texttt{Prolog} é baseado
 em \textit{backtracking} (além de outros conceitos, como unificação,
 claro). Porém, a eficiência da segunda pergunta podia ser bastante
-otimizada com algoritmos mais específicos para grafos, cuja
-representação em \texttt{Prolog} não é tão natural (apesar de ser
-possível).
+otimizada com algoritmos mais específicos para grafos, como referido
+na subsecção anterior, cuja representação em \texttt{Prolog} não é tão
+natural (apesar de ser possível).
 
 Dito isto, os operadores de \texttt{Prolog} em conjunto com as
 definições naturais dos predicados ajudam a que a implementação em
@@ -236,11 +236,43 @@ tempo não concluímos a sua inserção.
 
 \subsection{Implementação em \texttt{Prolog}}
 
-\lipsum[1]
+A implementação em \texttt{Prolog} usa o conceito de \textit{Definite
+  Clause Grammars} que por sua vez é implementado em \texttt{Prolog}
+usando diferença de listas. Esta é uma técnica elegante para
+representar uma gramática que é muito fácil de introduzir em
+\texttt{Prolog}.
 
-\lipsum[2]
+Na implementação temos a considerar 4 ficheiros diferentes. O
+\texttt{bd.pl} contém o dicionário de palavras a serem utilizadas
+pelos predicados da gramática. O seu formato foi feito para
+simplificar a gramática e fará mais sentido após ver o resto da
+implementação. O ficheiro \texttt{synt\_gen.pl} contém a gramática
+inicial que apenas testa se uma frase está correta ou não (não gera a
+\textit{parse tree}. O ficheiro \texttt{synt\_gen\_parse.pl} contém
+uma cópia do ficheiro anterior, mas introduz argumentos extra nos
+predicados de forma a gerar a \textit{parse tree}. Finalmente o
+ficheiro \texttt{test\_bed.pl} contém apenas as frases de exemplo do
+enunciado para propósitos de teste.
 
-\lipsum[3]
+Para diminuir a complexidade da gramática, usam-se argumentos extra em
+cada tipo sintático representando os vários atributos, como referido
+na subsecção anterior. A concordância destes atributos é testada nos
+predicados ``nucleares'' da gramática (que representam elementos
+sintáticos simples, como o predicado \texttt{verbo/4}). Assim, o
+dicionário de palavras guarda, além das próprias palavras, os tipos
+que representam assim como outros atributos (como o número de
+género). O caso mais extremo é o caso dos verbos, que para evitar
+repetição e entradas no dicionário, cada verbo conjugado inclui um
+atributo com a sua forma verbal infinitiva. Para garantir a
+concordância do tipo de verbo (transitivo, intransitivo), utiliza-se a
+forma verbal infinitiva que contém uma entrada extra no dicionário com
+esta informação.
+
+Além disto, foi implementado um programa em \texttt{C} que utiliza o
+\textit{foreign interface} do \texttt{Prolog} para comunicar, no
+ficheiro \texttt{main.c}. Este implementa um menu simples que permite
+verificar a correção de frases assim como gerar as devidas
+\textit{parse trees} interativamente.
 
 \subsection{Implementação em \texttt{Python}}
 
