@@ -1,0 +1,64 @@
+
+% start sentenca
+
+sentenca -> frase_valida
+frase_valida -> frase_comp
+
+frase_comp -> frase_s
+frase_comp -> frase_s conj frase_comp
+
+frase_s -> grupo_nom[N=?n] grupo_verb[N=?n]
+frase_s -> grupo_verb[N=?n]
+
+grupo_nom[N=?n] -> grupo_nom_s[N=?n]
+grupo_nom[N=?n] -> pron[N=?n]
+grupo_nom[N=?n] -> grupo_nom_s[G=?g, N=?n] grupo_adj[G=?g, N=?n]
+grupo_nom[N=?n] -> grupo_nom_s grupo_prep
+grupo_nom[N=?n] -> grupo_nom_s[G=?g, N=?n] grupo_adj[G=?g, N=?n] grupo_prep
+
+grupo_nom_s[G=?g, N=?n] -> deter[G=?g, N=?n] subst[G=?g, N=?n]
+grupo_nom_s[G=?g, N=?n] -> subst[G=?g, N=?n]
+
+grupo_prep -> prep grupo_nom
+
+grupo_adj[G=?g, N=?n] -> advrb[G=?g, N=?n] grupo_adj[G=?g, N=?n]
+grupo_adj[G=?g, N=?n] -> adj[G=?g, N=?n]
+
+grupo_verb[N=?n] -> verbo[N=?n, VT=intr]
+grupo_verb[N=?n] -> verbo[N=?n, VT=tra_d] grupo_nom
+grupo_verb[N=?n] -> verbo[N=?n, VT=tra_i] prep grupo_nom
+grupo_verb[N=?n] -> verbo[N=?n, VT=tra_i] prep_pro
+grupo_verb[N=?n] -> verbo[N=?n, VT=tra_i] prep_det[G=?h, N=?m] subst[G=?h, N=?m]
+
+
+
+# ##################################################################################
+# ##################################################################################
+
+
+
+verbo[N=?n, VT=intr, T=inf] -> 'correr' | 'sorrir' | 'bater'
+verbo[N=?n, VT=tra_i, T=inf] -> 'correr' | 'bater'
+verbo[N=s, VT=intr, T=pres] -> 'corre' | 'sorri'
+verbo[N=s, VT=tra_i, T=pres] -> 'corre'
+verbo[N=s, VT=intr, T=pp] -> 'correu' | 'bateu'
+verbo[N=s, VT=tra_i, T=pp] -> 'correu' | 'bateu'
+verbo[N=p, VT=intr, T=pi] -> 'corriam'
+verbo[N=p, VT=tra_i, T=pi] -> 'corriam'
+verbo[N=p, VT=intr, T=pp] -> 'bateram'
+verbo[N=p, VT=tra_i, T=pp] -> 'bateram'
+
+prep -> 'para' | 'com'
+
+prep_det[G=m, N=s] -> 'pelo' | 'no'
+prep_det[G=f, N=s] -> 'pela' | 'na' | 'a'
+
+deter[G=m, N=s] -> 'o'
+deter[G=f, N=s] -> 'a'
+deter[G=m, N=p] -> 'os'
+deter[G=f, N=p] -> 'as'
+
+subst[G=m, N=s] -> 'tempo' | 'cacador' | 'rosto' | 'rio' | 'mar' | 'vento' | 'martelo' | 'cachorro' | 'tambor' | 'sino'
+subst[G=f, N=s] -> 'menina' | 'floresta' | 'noticia' | 'cidade' | 'mae' | 'vida' | 'porta'
+subst[G=m, N=p] -> 'lobos' | 'tambores'
+subst[G=f, N=p] -> 'lagrimas'
